@@ -1,6 +1,20 @@
 import Image from "next/image";
+import { ReactNode } from 'react';
 
-export default function Headline(props: {title: string, description?: string}) {
+export type HeadlineProps = {
+    page: string;
+    number?: number;
+    array?: number[];
+    obj?: {
+      foo: string;
+      bar: string;
+    };
+    boolean?: boolean;
+    comp?: ReactNode;
+    children?: ReactNode;
+};
+
+export default function Headline(props: HeadlineProps) {
     return (
         <>
             <Image
@@ -12,8 +26,8 @@ export default function Headline(props: {title: string, description?: string}) {
                     priority
             />
             <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-                <li className="mb-2">{props.title}</li>
-                <li>Save and see your changes instantly.</li>
+                <li className="mb-2">{props.page}</li>
+                <li>{props.children}</li>
             </ol>
         </>
     );
