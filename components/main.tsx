@@ -8,7 +8,7 @@ export default function Main(props: HeadlineProps) {
         <Headline
           page={props.page}
         >
-          <p>childrenを使って表示させています</p>
+          <p className="inline">childrenを使って表示させています</p>
         </Headline>
         <Links />
       </main>
