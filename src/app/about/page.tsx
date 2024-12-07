@@ -4,14 +4,11 @@ import Footer from "../../components/footer";
 import Main from "../../components/main";
 import Header from "../../components/header";
 import InteractiveButton from '../../components/button';
-import { useCounter } from '../../hooks/useCounter';
-import { useInputArray } from '../../hooks/useInputArray';
-import { useBgColor } from '../../hooks/useBgColor';
-
+import { useAppState } from '../../providers/stateProvider';
 export default function About() {
-  const { count, isShow, handleClick, handleDisplay } = useCounter();
-  const { text, array, handleChange, handleAdd } = useInputArray();
-  useBgColor();
+  const { counterState, inputArrayState } = useAppState();
+  const { count, isShow, handleClick, handleDisplay } = counterState;
+  const { text, array, handleChange, handleAdd } = inputArrayState;
 
   return (
     <div className="grid items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
@@ -31,7 +28,7 @@ export default function About() {
       />
       <button onClick = {handleAdd}>追加</button>
       <ul>
-        {array.map((item) => (
+        {array.map((item: string) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
