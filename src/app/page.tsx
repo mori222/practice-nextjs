@@ -10,6 +10,7 @@ export default function Home() {
   const [count, setCount] = useState(1);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const [array, setArray] = useState<string[]>([]);
   
   const handleClick = useCallback(
     () => {
@@ -40,6 +41,16 @@ export default function Home() {
     setIsShow((prevIsShow) => !prevIsShow);
   }, []);
 
+  const handleAdd = useCallback(() => {
+    setArray((prevArray) => {
+      if (prevArray.some((item) => item === text)) {
+        alert('同じ文字列は追加できません');
+        return prevArray;
+      }
+      return [...prevArray, text];
+    });
+  }, [text]);
+
   return (
     <div className="grid items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       <Header />
@@ -55,6 +66,12 @@ export default function Home() {
         value={text} 
         onChange={handleChange}
       />
+      <button onClick = {handleAdd}>追加</button>
+      <ul>
+        {array.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
       <Main page="index"/>
       <Footer />
     </div>
