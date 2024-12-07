@@ -14,7 +14,7 @@ export default function Home() {
   const handleClick = useCallback(
     () => {
       if (count < 10) {
-        setCount((count) => count + 1);
+        setCount((prevCount) => prevCount + 1);
       }
     },
     [count]
@@ -37,7 +37,7 @@ export default function Home() {
   }, []);
 
   const handleDisplay = useCallback(() => {
-    setIsShow((isShow) => !isShow);
+    setIsShow((prevIsShow) => !prevIsShow);
   }, []);
 
   return (
