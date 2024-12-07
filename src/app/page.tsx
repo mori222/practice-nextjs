@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Footer from "../components/footer";
 import Header from "../components/header";
 import InteractiveButton from '../components/button';
@@ -9,10 +9,14 @@ import Main from "../components/main";
 export default function Home() {
   const [count, setCount] = useState(1);
   
-  const handleClick = () => {
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-  };
+  const handleClick = useCallback(
+    () => {
+      if (count < 10) {
+        setCount((count) => count + 1);
+      }
+    },
+    [count]
+  );
 
   useEffect(() => {
     document.body.style.backgroundColor = 'lightblue';
