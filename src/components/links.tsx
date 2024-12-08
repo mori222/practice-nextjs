@@ -1,21 +1,17 @@
 import Image from "next/image";
 
-const ITEMS = [
-  {
-    href: "https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
-    text: "Deploy now",
-    image: "/vercel.svg",
-  },
-  {
-    href: "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
-    text: "Read our docs",
-    image: "/vercel.svg",
-  },
-]
-export default function Links(){
+
+export default function Links({
+  items,
+  handleReduce
+}: {
+  items: {href: string, text: string, image: string}[];
+  handleReduce: () => void;
+}){
     return (
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          {ITEMS.map((item) => {
+          <button onClick={handleReduce}>減らす</button>
+          {items.map((item) => {
             return (
               <a
                 key={item.href}
